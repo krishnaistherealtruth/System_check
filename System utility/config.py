@@ -1,0 +1,2 @@
+CHECK_INTERVAL_MINUTES = 15
+API_URL = "http://127.0.0.1:8000/report"
