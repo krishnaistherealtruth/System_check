@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from models import ReportModel  # adjust this as per your project
+from models import SystemReport  # adjust this as per your project
 
 def save_report(db: Session, report: SystemReport):
     # Step 1: Add new report
@@ -31,3 +31,11 @@ def save_report(db: Session, report: SystemReport):
         db.delete(old_report)
 
     db.commit()
+
+def get_all_reports(db: Session) -> list[SystemReport]:
+    return db.query(SystemReport).order_by(SystemReport.timestamp.desc()).all()
+
+def get_reports_by_platform(db: Session, platform: str) -> list[SystemReport]:
+    return db.query(SystemReport).filter(
+        SystemReport.platform.ilike(f"%{platform}%")
+    ).order_by(SystemReport.timestamp.desc()).all()

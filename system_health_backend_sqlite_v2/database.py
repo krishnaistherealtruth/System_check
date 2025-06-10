@@ -20,7 +20,7 @@ Base = declarative_base()
 
 
 # Database model
-class SystemReport(Base):
+class ReportModel(Base):
     __tablename__ = "system_reports"
 
     machine_id = Column(String, primary_key=True, index=True)
