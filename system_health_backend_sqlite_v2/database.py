@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, String, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
 
-DATABASE_URL = "sqlite:///./reports.db"
+DATABASE_URL = "sqlite:///./reports_rebuilt.db"
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False,bind=engine)
@@ -18,12 +18,13 @@ def get_db():
 
 class ReportModel(Base):
     __tablename__ = "reports"
-    machine_id = Column(String, primary_key=True,unique=True , index=True)
+    machine_id = Column(String, primary_key=True, index=True)
     platform = Column(String)
     disk_encryption = Column(String)
     os_update_status = Column(String)
     antivirus_status = Column(String)
     sleep_setting_status = Column(String)
+    login_check=Column(String)
     timestamp = Column(DateTime, default=datetime.utcnow)
 
 # Automatically create tables
