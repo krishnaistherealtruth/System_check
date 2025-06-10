@@ -29,6 +29,7 @@ class ReportModel(Base):
     os_update_status = Column(String, nullable=False)
     antivirus_status = Column(String, nullable=False)
     sleep_setting_status = Column(String, nullable=False)
+    login_check=Column(String, nullable=False)
     timestamp = Column(DateTime, default=datetime.utcnow, nullable=False)
 
 

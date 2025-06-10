@@ -21,9 +21,15 @@ app.add_middleware(
 
 
 @app.post("/report")
-def receive_report(report: SystemReport, db: Session = Depends(get_db)):
-    save_report(db, report)
-    return {"message": "Report saved"}
+async def receive_report(report: SystemReport, db: Session = Depends(get_db)):
+    try:
+        print("Incoming report:", report.dict())
+        save_report(db, report)
+        return {"message": "Report saved"}
+    except Exception as e:
+        print("❌ Error saving report:", e)
+        return {"error": str(e)}
+
 
 @app.get("/machines")
 def list_all_machines(db: Session = Depends(get_db)):

@@ -1,6 +1,7 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from models import SystemReport  # adjust this as per your project
+from models import SystemReport
+from database import ReportModel
 
 def save_report(db: Session, report: SystemReport):
     # Step 1: Add new report
