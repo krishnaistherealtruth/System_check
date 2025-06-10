@@ -24,9 +24,9 @@ def run_daemon():
         previous_data = load_last_state()
 
         if current_data != previous_data:
-            log("Change detected. Reporting to server...")
+            log("Change detected and saved. Reporting to server...")
+            save_state(current_data)
             if report_to_server(current_data):
-                save_state(current_data)
                 log("Report sent and state saved.")
             else:
                 log("Failed to send report.")
