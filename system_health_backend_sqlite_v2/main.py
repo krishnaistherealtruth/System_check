@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from database import SessionLocal, ReportModel
 from models import SystemReport
-from crud import save_report, get_all_reports, filter_reports_by_platform
+from crud import save_report, get_all_reports, get_reports_by_platform
 import pandas as pd
 from fastapi.responses import StreamingResponse
 import io
@@ -31,7 +31,7 @@ def list_all_machines(db: Session = Depends(get_db)):
 
 @app.get("/machines/filter")
 def filter_by_platform(platform: str, db: Session = Depends(get_db)):
-    return filter_reports_by_platform(db, platform)
+    return get_reports_by_platform(db, platform)
 
 from fastapi.responses import HTMLResponse
 
