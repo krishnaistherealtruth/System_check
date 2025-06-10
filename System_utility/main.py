@@ -3,9 +3,9 @@ import time
 from datetime import datetime,  timezone
 import platform
 from checks import perform_all_checks
-from utils.logger import log
-from utils.state import load_last_state, save_state
-from utils.reporter import report_to_server
+from impor.logger import log
+from impor.state import load_last_state, save_state
+from impor.reporter import report_to_server
 from config import CHECK_INTERVAL_MINUTES
 
 def collect_data():
