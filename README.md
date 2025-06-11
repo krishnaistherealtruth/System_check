@@ -111,7 +111,7 @@ npm run dev
 
 ## 👨‍💻 Author
 
-**Krishna Singh**  
+**Aryan Singh**  
 [GitHub](https://github.com/krishnaistherealtruth)
 
 ---
