@@ -16,7 +16,7 @@ Base = declarative_base()
 
 class ReportModel(Base):
     __tablename__ = "system_reports"
-    machine_id = Column(String, primary_key=True, index=True)
+    machine_id = Column(String,primary_key=True, index=True)
     platform = Column(String, nullable=False)
     disk_encryption = Column(String, nullable=False)
     os_update_status = Column(String, nullable=False)

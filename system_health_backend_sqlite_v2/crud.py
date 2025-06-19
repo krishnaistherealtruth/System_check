@@ -14,19 +14,13 @@ def save_report(db: Session, report: SystemReport):
         login_check=report.login_check,
         timestamp=report.timestamp or datetime.utcnow()  # ✅ Use incoming or fallback
     )
-    db.add(new_report)
-    db.commit()
-
-    old_reports = (
-        db.query(ReportModel)
-        .filter(ReportModel.machine_id == report.machine_id)
-        .order_by(ReportModel.timestamp.desc())
-        .offset(10)
-        .all()
-    )
-
-    for old_report in old_reports:
-        db.delete(old_report)
+    existing = db.query(ReportModel).filter_by(machine_id=report.machine_id).first()
+    if existing:
+        for field, value in report.dict().items():
+            setattr(existing, field, value)
+        existing.timestamp = report.timestamp or datetime.utcnow()
+    else:
+        db.add(new_report)
 
     db.commit()
 
